@@ -1,0 +1,172 @@
+---
+title: "Membrane permeabilization: Draft"
+author: "Stelios Serghiou"
+date: "2023-03-12"
+output: html_document
+---
+
+# Setup
+
+## Imports
+
+```{r}
+library(dplyr)
+library(magrittr)
+```
+
+
+## Parameters
+
+```{r}
+# Source locations
+src_dirname <- "../../data/tidy_data/membrane-permeabilization/"
+src_basename <- "2023-03-11.csv"
+
+# Destination locations
+dst_dirname <- "../../outputs/draft/membrane-permeabilization/"
+```
+
+
+***
+
+# Read
+
+```{r}
+# Read all csv files
+membrane_ <- read_csv(file.path(src_dirname, src_basename))
+```
+
+
+***
+
+# Conform
+
+Create file.
+
+```{r}
+membrane <- membrane_
+```
+
+
+Glimpse.
+
+```{r}
+glimpse(membrane)
+```
+
+
+***
+
+# Compute - Describe
+
+Compute difference between channels.
+
+```{r}
+# Create channel columns and difference
+wide <- 
+  membrane %>% 
+  pivot_wider(
+    id_cols = condition,
+    names_from = channel,
+    names_glue = "channel_{channel}",
+    values_from = mean_intensity
+  ) %>% 
+  mutate(diffs = channel_1 - channel_2)
+
+# Compute mean in differences
+mean_diff <- wide %>% pull(diffs) %>% mean
+
+# Print mean
+sprintf("Mean intensity difference in Channel 1 vs. 2 = %.1f units", mean_diff)
+```
+
+
+***
+
+# Compute = Visualize
+
+## Histograms
+
+```{r}
+# Plot
+membrane_histogram <-
+  membrane %>% 
+  mutate(channel = paste("Channel", channel)) %>% 
+  ggplot(aes(x = mean_intensity, fill = channel, color = channel)) +
+  geom_histogram(alpha = 0.7) +
+  facet_wrap(vars(condition)) +
+  labs(x = "Mean intensity (units)", y = "Counts") +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_text(vjust = -1),
+    axis.title.y = element_text(vjust = 3),
+    legend.title = element_blank()
+  )
+
+# Save
+ggsave(
+  file.path(dst_dirname, "membrane_histogram.pdf"),
+  p,
+  height = 4,
+  width = 6
+)
+
+# Print
+membrane_histogram
+```
+
+
+## Images
+
+I am choosing an image on the following criteria:
+1. xxx
+2. xxx
+3. ...
+
+On the basis of this criteria, I will be illustrating the following image:
+
+```{r}
+# Choose image
+from_experiment <- "../../data/conformed_data/membrane-permeabilization/"
+from_condition <- "detergent=digitonin_conc=0.02mmolar_minutes=1/"
+from_basename <- "date=2022-03-19_488=poc5_594=cnb_01_01.tif"
+
+# Copy paste to output directory
+from <- file.path(from_experiment, from_condition, from_basename)
+to <- file.path(dst_dirname, "example_image.tif")
+file.copy(from, to)
+```
+
+
+***
+
+# Compute - Analyze
+
+This is where you can compute any p-values.
+
+
+***
+
+# Write
+
+```{r}
+```
+
+
+***
+
+# Documentation
+
+## Session info
+
+```{r}
+print(sessionInfo(), locale = F)
+```
+
+## References
+
+```{r}
+(.packages()) %>% sort %>% lapply(citation) %>% lapply(c) %>% unique
+```
+
+
