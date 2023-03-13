@@ -52,7 +52,7 @@ Combining resources across OSF and GitHub should yield the following structure.
 ├── requirements.txt    <- The requirements file for reproducing the analysis environment, e.g.
 │                          generated with `pip freeze > requirements.txt`
 │
-├── publication                      
+└── publication                      
     └── journal                      <- Journal that this was submitted to
         └── submission-1_YYYY-MM-DD  <- All materials of submission 1
             ├── docs                 <- All documents for submission
