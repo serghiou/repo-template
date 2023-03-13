@@ -28,10 +28,12 @@ Combining resources across OSF and GitHub should yield the following structure.
 │   │   └── <experiment>
 ├── code
 │   ├── data           <- Code to process data from raw all the way to tidy.
+│   │   └── <experiment>
 │   ├── draft          <- Code for draft data analytics and visualizations.
 │   ├── final          <- Code to produce text, figures and tables as they appear in pubilcations.
 ├── output
 │   ├── draft          <- Tables and figures from the draft analytics
+│   │   └── <experiment>
 │   ├── final          <- Tables and figures from the final analytics
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
@@ -44,8 +46,33 @@ Combining resources across OSF and GitHub should yield the following structure.
 │           ├── tables               <- All tables for submission
 ```
 
+## Code structure
+
+All code follows the following structure.
+
+```
+├── Title
+│   ├── Inputs         <- Define the input sources.
+│   ├── Outputs        <- Define the outputs.
+├── Setup
+│   ├── Import         <- Import modules.
+│   ├── Parameters     <- Input parameters (e.g., source files)
+│   ├── Configs        <- Input any configurations (e.g., from a config file).
+│   └── Functions      <- Define all functions.
+├── Read
+│   ├── Import         <- Import data.
+│   ├── Conform        <- Conform data to a format appropriate for analysis.
+├── Compute
+│   ├── Compute        <- Compute descriptive statistics, visualize, analyze.
+├── Write
+│   ├── Conform        <- Conform data to a format appropriate for storage.
+│   ├── Export         <- Write/push/sink data to a storage service.
+```
+
 ## How to run
 
 ## How to contribute
+
+## Be a good citizen
 
 ## References
