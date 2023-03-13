@@ -1,5 +1,13 @@
 # README
 
+## Authors
+
+Stelios Serghiou, Eirini Tsekitsidou
+
+## Publication
+
+When we have the preprint or publication, we will post the link here!
+
 ## File structure
 
 Combining resources across OSF and GitHub should yield the following structure.
@@ -76,10 +84,10 @@ To run this code, use the following diagramatic acyclic graph (DAG). Note that t
 ![How to run diagram](https://github.com/serghiou/centrosomal-calcineurin/blob/main/how-to-run.jpg?raw=true)
 
 
-## How to contribute
+## How to get help
+
+If you encounter a bug, please file an issue with a minimal reproducible example [here](https://github.com/serghiou/centrosomal-calcineurin/issues) and please Label it as a "bug" (option on the right of your window). For help on how to use the package, please file an issue with a clearly actionable question [here](https://github.com/serghiou/centrosomal-calcineurin/issues) and label it as "help wanted." For all other questions and discussion, please email the first author.
 
 ## Be a good citizen
 
 If you like or are reusing elements of this repo, please give a star!
-
-## References
