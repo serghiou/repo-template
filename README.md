@@ -89,9 +89,13 @@ All code follows the following structure.
     └── Export          <- Write/push/sink data to a storage service.
 ```
 
+## How to get the data
+
+As of the time of writing, these are on a Share Drive on Google Drive [here](https://drive.google.com/drive/u/1/folders/0AHwZeCcC1chbUk9PVA).
+
 ## How to run
 
-To run this code, use the following diagramatic acyclic graph (DAG). Note that this applies for each experiment.
+To run this code, use the following diagramatic acyclic graph (DAG). Note that this applies for each experiment. Note that you need to combine all resources first into one repository to run.
 
 ![How to run diagram](https://github.com/serghiou/centrosomal-calcineurin/blob/main/how-to-run.jpg?raw=true)
 
