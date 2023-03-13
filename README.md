@@ -60,21 +60,21 @@ All code follows the following structure.
 
 ```
 ├── Title
-│   ├── Inputs         <- Define the input sources.
-│   ├── Outputs        <- Define the outputs.
+│   ├── Inputs          <- Define the input sources.
+│   ├── Outputs         <- Define the outputs.
 ├── Setup
-│   ├── Import         <- Import modules.
-│   ├── Parameters     <- Input parameters (e.g., source files)
-│   ├── Configs        <- Input any configurations (e.g., from a config file).
-│   └── Functions      <- Define all functions.
+│   ├── Import          <- Import modules.
+│   ├── Parameters      <- Input parameters (e.g., source files)
+│   ├── Configs         <- Input any configurations (e.g., from a config file).
+│   └── Functions       <- Define all functions.
 ├── Read
-│   ├── Import         <- Import data.
-│   ├── Conform        <- Conform data to a format appropriate for analysis.
+│   ├── Import          <- Import data.
+│   ├── Conform         <- Conform data to a format appropriate for analysis.
 ├── Compute
-│   ├── Compute        <- Compute descriptive statistics, visualize, analyze.
+│   ├── Compute         <- Compute descriptive statistics, visualize, analyze.
 ├── Write
-│   ├── Conform        <- Conform data to a format appropriate for storage.
-│   ├── Export         <- Write/push/sink data to a storage service.
+│   ├── Conform         <- Conform data to a format appropriate for storage.
+│   ├── Export          <- Write/push/sink data to a storage service.
 ```
 
 ## How to run
@@ -87,6 +87,16 @@ To run this code, use the following diagramatic acyclic graph (DAG). Note that t
 ## How to get help
 
 If you encounter a bug, please file an issue with a minimal reproducible example [here](https://github.com/serghiou/centrosomal-calcineurin/issues) and please Label it as a "bug" (option on the right of your window). For help on how to use the package, please file an issue with a clearly actionable question [here](https://github.com/serghiou/centrosomal-calcineurin/issues) and label it as "help wanted." For all other questions and discussion, please email the first author.
+
+
+## How to contribute
+
+1. Create an issue as described above.
+2. Create a branch from the issue as described [here](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-a-branch-for-an-issue).
+3. The branch name should abide by the format and voice suggested by the following example: "152-bugfix-fix-broken-links".
+4. Issue a pull request to initiate a review.
+5. Merge using "Rebase and merge" after you've squashed all non-critical commits.
+
 
 ## Be a good citizen
 
