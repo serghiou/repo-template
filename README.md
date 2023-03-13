@@ -73,7 +73,7 @@ All code follows the following structure.
 
 To run this code, use the following diagramatic acyclic graph (DAG). Note that this applies for each experiment.
 
-![alt text](https://github.com/serghiou/centrosomal-calcineurin/how-to-run-diagram.jpg?raw=true)
+![How to run diagram](https://github.com/serghiou/centrosomal-calcineurin/how-to-run.jpg?raw=true)
 
 
 ## How to contribute
