@@ -93,7 +93,7 @@ If you encounter a bug, please file an issue with a minimal reproducible example
 
 1. Create an issue as described above.
 2. Create a branch from the issue as described [here](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-a-branch-for-an-issue).
-3. The branch name should abide by the format and voice suggested by the following example: "152-bugfix-fix-broken-links".
+3. Branch names should use the format and voice of this example: "152-bugfix-fix-broken-links".
 4. Issue a pull request to initiate a review.
 5. Merge using "Rebase and merge" after you've squashed all non-critical commits.
 
