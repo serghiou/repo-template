@@ -75,4 +75,6 @@ All code follows the following structure.
 
 ## Be a good citizen
 
+If you like or are reusing elements of this repo, please give a star!
+
 ## References
