@@ -16,42 +16,48 @@ Combining resources across OSF and GitHub should yield the following structure.
 ├── .gitignore          <- Lists files to be ignored in syncing between local and remote.
 ├── LICENSE             <- Describes license to the contents of this repo.
 ├── README.md           <- Describes the project and orchestration (how to run)
+│
 ├── data
 │   ├── raw             <- The original, immutable data dump.
 │   │   └── <experiment>
-│   │   │   └── <conditions/replicate>
-│   │   │   │   └── <date>
+│   │       └── <conditions/replicate>
+│   │           └── <date>
 │   ├── external        <- Data from third party sources (e.g., US Census).
 │   │   └── <provider>
-│   │   │   └── <date>
+│   │       └── <date>
 │   ├── conformed       <- Intermediate data that has been transformed.
 │   │   └── <experiment>
-│   │   │   └── <conditions/replicate>
-│   │   │   │   └── <date>
+│   │       └── <conditions/replicate>
+│   │           └── <date>
 │   ├── extracted       <- Tabular data extracted from image data.
 │   │   └── <experiment>
-│   │   │   └── <conditions/replicate>
-│   │   │   │   └── <date>
+│   │       └── <conditions/replicate>
+│   │           └── <date>
 │   └── tidy            <- The final, canonical datasets for analysis.
-│   │   └── <experiment>
+│       └── <experiment>
+│
 ├── code
 │   ├── data_processing <- Code to process data from raw all the way to tidy.
 │   │   └── <experiment>
 │   ├── draft           <- Code for draft data analytics and visualizations.
-│   ├── final           <- Code to produce text, figures and tables as they appear in pubilcations.
+│   └── final           <- Code to produce text, figures and tables as they appear in pubilcations.
+│
 ├── output
 │   ├── draft           <- Tables and figures from the draft analytics
 │   │   └── <experiment>
-│   ├── final           <- Tables and figures from the final analytics
+│   └── final           <- Tables and figures from the final analytics
+│
 ├── references          <- Data dictionaries, manuals, and all other explanatory materials.
+│
 ├── requirements.txt    <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+│                          generated with `pip freeze > requirements.txt`
+│
 ├── publication                      
-│   ├── journal                      <- Journal that this was submitted to
-│       ├── submission-1_YYYY-MM-DD  <- All materials of submission 1
+│   └── journal                      <- Journal that this was submitted to
+│       └── submission-1_YYYY-MM-DD  <- All materials of submission 1
 │           ├── docs                 <- All documents for submission
 │           ├── figures              <- All figures for submission
-│           ├── tables               <- All tables for submission
+│           └── tables               <- All tables for submission
 ```
 
 ## Code structure
@@ -61,20 +67,24 @@ All code follows the following structure.
 ```
 ├── Title
 │   ├── Inputs          <- Define the input sources.
-│   ├── Outputs         <- Define the outputs.
+│   └── Outputs         <- Define the outputs.
+│
 ├── Setup
 │   ├── Import          <- Import modules.
 │   ├── Parameters      <- Input parameters (e.g., source files)
 │   ├── Configs         <- Input any configurations (e.g., from a config file).
 │   └── Functions       <- Define all functions.
+│
 ├── Read
 │   ├── Import          <- Import data.
-│   ├── Conform         <- Conform data to a format appropriate for analysis.
+│   └── Conform         <- Conform data to a format appropriate for analysis.
+│
 ├── Compute
-│   ├── Compute         <- Compute descriptive statistics, visualize, analyze.
+│   └── Compute         <- Compute descriptive statistics, visualize, analyze.
+│
 ├── Write
 │   ├── Conform         <- Conform data to a format appropriate for storage.
-│   ├── Export          <- Write/push/sink data to a storage service.
+│   └── Export          <- Write/push/sink data to a storage service.
 ```
 
 ## How to run
