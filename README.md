@@ -53,11 +53,11 @@ Combining resources across OSF and GitHub should yield the following structure.
 │                          generated with `pip freeze > requirements.txt`
 │
 ├── publication                      
-│   └── journal                      <- Journal that this was submitted to
-│       └── submission-1_YYYY-MM-DD  <- All materials of submission 1
-│           ├── docs                 <- All documents for submission
-│           ├── figures              <- All figures for submission
-│           └── tables               <- All tables for submission
+    └── journal                      <- Journal that this was submitted to
+        └── submission-1_YYYY-MM-DD  <- All materials of submission 1
+            ├── docs                 <- All documents for submission
+            ├── figures              <- All figures for submission
+            └── tables               <- All tables for submission
 ```
 
 ## Code structure
@@ -82,9 +82,9 @@ All code follows the following structure.
 ├── Compute
 │   └── Compute         <- Compute descriptive statistics, visualize, analyze.
 │
-├── Write
-│   ├── Conform         <- Conform data to a format appropriate for storage.
-│   └── Export          <- Write/push/sink data to a storage service.
+└── Write
+    ├── Conform         <- Conform data to a format appropriate for storage.
+    └── Export          <- Write/push/sink data to a storage service.
 ```
 
 ## How to run
