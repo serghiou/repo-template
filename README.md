@@ -47,7 +47,7 @@ Combining resources across OSF and GitHub should yield the following structure.
 │   │   └── <experiment>
 │   └── final           <- Tables and figures from the final analytics
 │
-├── references          <- Data dictionaries, manuals, and all other explanatory materials.
+├── docs                <- Data dictionaries, manuals, and all other explanatory materials.
 │
 ├── requirements.txt    <- The requirements file for reproducing the analysis environment, e.g.
 │                          generated with `pip freeze > requirements.txt`
