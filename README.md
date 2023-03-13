@@ -2,7 +2,7 @@
 
 ## Authors
 
-Stelios Serghiou, Eirini Tsekitsidou
+Stylianos (Stelios) Serghiou, Eirini Tsekitsidou
 
 ## Publication
 
