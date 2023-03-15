@@ -25,7 +25,7 @@ Combining resources across OSF and GitHub should yield the following structure.
 │   ├── external        <- Data from third party sources (e.g., US Census).
 │   │   └── <provider>
 │   │       └── <date as YYYY-MM-DD>
-│   ├── conformed       <- Intermediate data that has been standardized to the desired format.
+│   ├── intermediate       <- Intermediate data that has been standardized, formatted, deduped, etc.
 │   │   └── <experiment>
 │   │       └── <conditions/replicate>
 │   │           └── <date as YYYY-MM-DD>
