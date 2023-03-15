@@ -1,8 +1,11 @@
 ---
 title: "Membrane permeabilization: Tidy data"
 author: "Stelios Serghiou"
-date: "2023-03-12"
-output: html_document
+date: "`r format(Sys.time(), '%a, %b %d, %Y')`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
 
 # Setup
@@ -12,21 +15,20 @@ output: html_document
 ```{r}
 library(dplyr)
 library(magrittr)
+library(readr)
 ```
-
 
 ## Parameters
 
 ```{r}
 # Source locations
-src_dirname <- "../../../data/extracted_data/membrane-permeabilization/"
+src_dirname <- "../../../data/extracted/exp=membrane-permeabilization/"
 
 # Destination locations
-dst_dirname <- "../../../data/tidy_data/membrane-permeabilization/"
+dst_dirname <- "../../../data/tidy/exp=membrane-permeabilization/"
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Read
 
@@ -43,8 +45,7 @@ csv_files <- list.files(
 study_ <- read_csv(csv_files)
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Conform
 
@@ -54,13 +55,11 @@ Create file.
 study <- study_
 ```
 
-
 Inspect file.
 
 ```{r}
 glimpse(study)
 ```
-
 
 Remove unwanted columns.
 
@@ -71,7 +70,6 @@ unwanted_cols <- c("...1")
 # Remove
 study %<>% select(-all_of(unwanted_cols))
 ```
-
 
 Rename columns.
 
@@ -91,7 +89,6 @@ study %<>%
   rename(any_of(new_old))
 ```
 
-
 Create columns.
 
 ```{r}
@@ -104,15 +101,13 @@ study %<>%
   relocate(condition:channel, .after = file_name)
 ```
 
-
 Glimpse.
 
 ```{r}
 glimpse(study)
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Write
 
@@ -125,8 +120,7 @@ filepath <- file.path(dst_dirname, paste0(today, ".csv"))
 write_csv(study, filepath)
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Documentation
 
@@ -141,5 +135,3 @@ print(sessionInfo(), locale = F)
 ```{r}
 (.packages()) %>% sort %>% lapply(citation) %>% lapply(c) %>% unique
 ```
-
-
