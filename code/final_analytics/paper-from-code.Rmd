@@ -123,7 +123,7 @@ On the basis of this criteria, I will be illustrating the following image:
 
 ```{r}
 # Choose image
-from_experiment <- "../../data/conformed/exp=membrane-permeabilization/"
+from_experiment <- "../../data/intermediate/exp=membrane-permeabilization/"
 from_condition <- "detergent=digitonin_conc=0.02mmolar_minutes=1/"
 from_basename <- "date=2022-03-19_488=poc5_594=cnb_01_01.tif"
 
