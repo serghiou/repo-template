@@ -1,8 +1,11 @@
 ---
-title: "Membrane permeabilization: Draft"
+title: "Membrane permeabilization: Draft analytics"
 author: "Stelios Serghiou"
-date: "2023-03-12"
-output: html_document
+date: "`r format(Sys.time(), '%a, %b %d, %Y')`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
 
 # Setup
@@ -11,23 +14,24 @@ output: html_document
 
 ```{r}
 library(dplyr)
+library(ggplot2)
 library(magrittr)
+library(readr)
+library(tidyr)
 ```
-
 
 ## Parameters
 
 ```{r}
 # Source locations
-src_dirname <- "../../data/tidy_data/membrane-permeabilization/"
+src_dirname <- "../../data/tidy/exp=membrane-permeabilization/"
 src_basename <- "2023-03-11.csv"
 
 # Destination locations
-dst_dirname <- "../../outputs/draft/membrane-permeabilization/"
+dst_dirname <- "../../outputs/draft/exp=membrane-permeabilization/"
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Read
 
@@ -36,8 +40,7 @@ dst_dirname <- "../../outputs/draft/membrane-permeabilization/"
 membrane_ <- read_csv(file.path(src_dirname, src_basename))
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Conform
 
@@ -47,15 +50,13 @@ Create file.
 membrane <- membrane_
 ```
 
-
 Glimpse.
 
 ```{r}
 glimpse(membrane)
 ```
 
-
-***
+------------------------------------------------------------------------
 
 # Compute - Describe
 
@@ -80,10 +81,9 @@ mean_diff <- wide %>% pull(diffs) %>% mean
 sprintf("Mean intensity difference in Channel 1 vs. 2 = %.1f units", mean_diff)
 ```
 
+------------------------------------------------------------------------
 
-***
-
-# Compute = Visualize
+# Compute - Visualize
 
 ## Histograms
 
@@ -106,7 +106,7 @@ membrane_histogram <-
 # Save
 ggsave(
   file.path(dst_dirname, "membrane_histogram.pdf"),
-  p,
+  membrane_histogram,
   height = 4,
   width = 6
 )
@@ -118,16 +118,13 @@ membrane_histogram
 
 ## Images
 
-I am choosing an image on the following criteria:
-1. xxx
-2. xxx
-3. ...
+I am choosing an image on the following criteria: 1. xxx 2. xxx 3. ...
 
 On the basis of this criteria, I will be illustrating the following image:
 
 ```{r}
 # Choose image
-from_experiment <- "../../data/conformed_data/membrane-permeabilization/"
+from_experiment <- "../../data/conformed/exp=membrane-permeabilization/"
 from_condition <- "detergent=digitonin_conc=0.02mmolar_minutes=1/"
 from_basename <- "date=2022-03-19_488=poc5_594=cnb_01_01.tif"
 
@@ -138,14 +135,14 @@ file.copy(from, to)
 ```
 
 
-***
+------------------------------------------------------------------------
 
 # Compute - Analyze
 
 This is where you can compute any p-values.
 
 
-***
+------------------------------------------------------------------------
 
 # Write
 
@@ -153,7 +150,7 @@ This is where you can compute any p-values.
 ```
 
 
-***
+------------------------------------------------------------------------
 
 # Documentation
 
@@ -168,5 +165,3 @@ print(sessionInfo(), locale = F)
 ```{r}
 (.packages()) %>% sort %>% lapply(citation) %>% lapply(c) %>% unique
 ```
-
-
