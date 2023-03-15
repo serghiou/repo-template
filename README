@@ -21,26 +21,26 @@ Combining resources across OSF and GitHub should yield the following structure.
 │   ├── raw             <- The original, immutable data dump.
 │   │   └── <experiment>
 │   │       └── <conditions/replicate>
-│   │           └── <date>
+│   │           └── <date as YYYY-MM-DD>
 │   ├── external        <- Data from third party sources (e.g., US Census).
 │   │   └── <provider>
-│   │       └── <date>
-│   ├── conformed       <- Intermediate data that has been transformed.
+│   │       └── <date as YYYY-MM-DD>
+│   ├── conformed       <- Intermediate data that has been standardized to the desired format.
 │   │   └── <experiment>
 │   │       └── <conditions/replicate>
-│   │           └── <date>
-│   ├── extracted       <- Tabular data extracted from image data.
+│   │           └── <date as YYYY-MM-DD>
+│   ├── extracted       <- Tabular data extracted from conformed image data.
 │   │   └── <experiment>
 │   │       └── <conditions/replicate>
-│   │           └── <date>
-│   └── tidy            <- The final, canonical datasets for analysis.
+│   │           └── <date as YYYY-MM-DD>
+│   └── tidy            <- The final, canonical datasets for analysis. Includes engineered features.
 │       └── <experiment>
 │
 ├── code
 │   ├── data_processing <- Code to process data from raw all the way to tidy.
 │   │   └── <experiment>
-│   ├── draft           <- Code for draft data analytics and visualizations.
-│   └── final           <- Code to produce text, figures and tables as they appear in pubilcations.
+│   ├── draft           <- Code that operates on tidy data for draft data analytics and visualizations.
+│   └── final           <- Code that operates on tidy data to produce text, figures and tables as they appear in pubilcations.
 │
 ├── output
 │   ├── draft           <- Tables and figures from the draft analytics
@@ -73,8 +73,8 @@ All code follows the following structure.
 │
 ├── Setup
 │   ├── Import          <- Import modules.
-│   ├── Parameters      <- Input parameters (e.g., source files)
-│   ├── Configs         <- Input any configurations (e.g., from a config file).
+│   ├── Parameters      <- Input parameters (e.g., data definitions)
+│   ├── Configs         <- Input any configurations (e.g., source data, % sampled).
 │   └── Functions       <- Define all functions.
 │
 ├── Read
@@ -82,7 +82,8 @@ All code follows the following structure.
 │   └── Conform         <- Conform data to a format appropriate for analysis.
 │
 ├── Compute
-│   └── Compute         <- Compute descriptive statistics, visualize, analyze.
+│   └── Compute - <Analysis type>   <- Compute descriptive statistics, visualize, analyze.
+│       └── <Analysis subtype>      <- Analysis subtype (if applicable; e.g., histograms).
 │
 └── Write
     ├── Conform         <- Conform data to a format appropriate for storage.
