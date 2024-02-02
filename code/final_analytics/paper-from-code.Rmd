@@ -147,6 +147,17 @@ file.copy(from, to)
 
 # Documentation
 
+## Dependencies
+
+```{r}
+# Clean up project of libraries not in use
+renv::clean()
+
+# Update lock file with new packages
+renv::snapshot()
+```
+
+
 ## Session info
 
 ```{r}
