@@ -4,9 +4,11 @@
 
 Stylianos (Stelios) Serghiou, Eirini Tsekitsidou
 
+
 ## Publication
 
 When we have the preprint or publication, we will post the link here!
+
 
 ## File structure
 
@@ -62,6 +64,7 @@ Combining resources across OSF and GitHub should yield the following structure.
 └── packrat             <- Package dependency management with packrat
 ```
 
+
 ## Code structure
 
 All code follows the following structure.
@@ -90,16 +93,46 @@ All code follows the following structure.
     └── Export          <- Write/push/sink data to a storage service.
 ```
 
+
 ## How to get the data
 
 As of the time of writing, these are on a Share Drive on Google Drive [here](https://drive.google.com/drive/u/1/folders/0AHwZeCcC1chbUk9PVA).
 
+
 ## How to run
+
+### From source
 
 To run this code, use the following diagramatic acyclic graph (DAG). Note that this applies for each experiment. Note that you need to combine all resources first into one repository to run.
 
 ![How to run diagram](https://github.com/serghiou/centrosomal-calcineurin/blob/main/how-to-run.jpg?raw=true)
 
+### From the Dockerfile
+
+To build and run the Docker container, use the following commands in your terminal, executed in the directory containing your Dockerfile (note that Docker needs to be installed and running before you run these commands in your terminal - also, you need to make sure that you have the image by running the following in your terminal: `docker pull rocker/r-ver:4.2.3 `):
+
+```sh
+docker build -t calcineurin_image .
+docker run calcineurin_image
+```
+
+Then, get the container ID by looking underneath the container name or running
+
+```sh
+docker ps -a
+```
+
+Finally, retrieve the output:
+
+```sh
+docker cp -a 355b7a4764f6:/project/code/final_analytics/ code/final_analytics/docker
+```
+
+or
+
+```sh
+docker cp 355b7a4764f6:/project/code/final_analytics/paper-from-code.html code/final_analytics/paper-from-code_docker.html
+```
 
 ## How to get help
 
