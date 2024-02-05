@@ -64,8 +64,8 @@ Compute difference between channels.
 
 ```{r}
 # Create channel columns and difference
-wide <- 
-  membrane %>% 
+wide <-
+  membrane %>%
   pivot_wider(
     id_cols = condition,
     names_from = channel,
