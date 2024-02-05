@@ -1,0 +1,8 @@
+# Details: https://cran.r-project.org/web/packages/lintr/vignettes/lintr.html
+linters: linters_with_defaults(
+    line_length_linter(80),
+    object_name_linter(styles = c("snake_case", "SNAKE_CASE", "symbols")),
+    commented_code_linter = NULL
+  )
+exclusions: list(
+  )
