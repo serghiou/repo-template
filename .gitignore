@@ -2,7 +2,6 @@
 data
 outputs
 publication
-packrat/lib*/
 
 # R files
 .Rhistory
