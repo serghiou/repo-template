@@ -7,7 +7,6 @@ packrat/lib*/
 # R files
 .Rhistory
 .Rproj.user
-*.Rproj
 
 # Mac files
 *.DS_Store
