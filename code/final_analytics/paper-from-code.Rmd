@@ -112,21 +112,17 @@ membrane_histogram <-
     legend.title = element_blank()
   )
 
-# Save
-ggsave(
-  file.path(dst_dirname, "paper-from-code_fig_1a.pdf"),
-  membrane_histogram,
-  height = 4,
-  width = 6
-)
-
 # Print
 membrane_histogram
 ```
 
 ### Panel b
 
-I am choosing an image on the following criteria: 1. xxx 2. xxx 3. ...
+I am choosing an image on the following criteria:
+
+1. xxx
+2. xxx
+3. ...
 
 On the basis of this criteria, I will be illustrating the following image:
 
@@ -149,6 +145,23 @@ file.copy(from, to)
 
 ```{r}
 
+```
+
+
+------------------------------------------------------------------------
+
+# Write
+
+## Figures
+
+```{r}
+# Save
+ggsave(
+  file.path(dst_dirname, "paper-from-code_fig_1a.pdf"),
+  membrane_histogram,
+  height = 4,
+  width = 6
+)
 ```
 
 
