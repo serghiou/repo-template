@@ -71,11 +71,13 @@ wide <-
     names_from = channel,
     names_glue = "channel_{channel}",
     values_from = mean_intensity
-  ) %>% 
+  ) %>%
   mutate(diffs = channel_1 - channel_2)
 
 # Compute mean in differences
-mean_diff <- wide %>% pull(diffs) %>% mean
+mean_diff <- wide %>%
+  pull(diffs) %>%
+  mean()
 
 # Print mean
 sprintf("Mean intensity difference in Channel 1 vs. 2 = %.1f units", mean_diff)
@@ -90,8 +92,8 @@ sprintf("Mean intensity difference in Channel 1 vs. 2 = %.1f units", mean_diff)
 ```{r}
 # Plot
 membrane_histogram <-
-  membrane %>% 
-  mutate(channel = paste("Channel", channel)) %>% 
+  membrane %>%
+  mutate(channel = paste("Channel", channel)) %>%
   ggplot(aes(x = mean_intensity, fill = channel, color = channel)) +
   geom_histogram(alpha = 0.7) +
   facet_wrap(vars(condition)) +
@@ -152,16 +154,64 @@ This is where you can compute any p-values.
 
 ------------------------------------------------------------------------
 
+# Reproducibility
+
+## Linting and styling
+
+```{r}
+# Style current file
+styler::style_file(
+  path = rstudioapi::getSourceEditorContext()$path,
+  style = tidyverse_style
+)
+
+# Lint current file
+lintr::lint(rstudioapi::getSourceEditorContext()$path)
+```
+
+
+## Dependencies
+
+```{r}
+# Clean up project of libraries not in use
+renv::clean()
+
+# Update lock file with new packages
+renv::snapshot()
+```
+
+
+## Containerization
+
+```{r}
+# Only run this if option is set to TRUE
+if (UPDATE_DOCKERFILE) {
+  # Create a dockerfile from the session info
+  my_dockerfile <- containerit::dockerfile(from = sessionInfo(), env = ls())
+  # Write file
+  write(my_dockerfile, file = "~/Dockerfile")
+}
+
+print(my_dockerfile)
+```
+
+
+------------------------------------------------------------------------
+
 # Documentation
 
 ## Session info
 
 ```{r}
-print(sessionInfo(), locale = F)
+print(sessionInfo(), locale = FALSE)
 ```
 
 ## References
 
 ```{r}
-(.packages()) %>% sort %>% lapply(citation) %>% lapply(c) %>% unique
+(.packages()) %>%
+  sort() %>%
+  lapply(citation) %>%
+  lapply(c) %>%
+  unique()
 ```
