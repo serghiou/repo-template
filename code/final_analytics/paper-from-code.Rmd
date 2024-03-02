@@ -1,12 +1,141 @@
 ---
-title: "Paper from code"
-author: "Stelios Serghiou"
-date: "`r format(Sys.time(), '%a, %b %d, %Y')`"
+title: 'Paper from code'
+author: "Stylianos Serghiou"
+date: '`r format(Sys.time(), "%d/%m/%Y")`'
+params:
+  PROPORTION_OF_DATA: 0.5
 output:
   prettydoc::html_pretty:
-    theme: architect
-    highlight: github
+    theme: hpstr      # or: architect; https://github.com/yixuan/prettydoc
+    highlight: github # or: vignette
+    toc: TRUE         # no toc_float available
+    df_print: kable   # obviates %>% kable; does not replace styling though
 ---
+
+<style>
+p {
+
+text-align: justify;
+text-justify: interword;
+padding: 0 0 0.5em 0
+
+}
+</style>
+
+```{r knitr, echo=FALSE}
+# Load packages
+library(knitr)
+library(rmdformats)
+library(kableExtra)
+library(ggplot2)
+library(magrittr)
+
+
+######### knitr
+
+# Define chunk options
+opts_chunk$set(
+  echo = T,
+  cache = F,  # if TRUE, no need to rerun chunks
+  # cache.lazy = TRUE,  # use with big objects (>1 GB)
+  cache.comments = F,  # do not rebuild if comments change
+  tidy = F,  # can play with this
+  warning = F,
+  message = F,
+  comment = NA,
+  fig.align = "center",
+  fig.width = 7,
+  fig.path = "Figs/",  # export all figures to dir Figs
+  linewidth = 91,
+  width = 75
+)
+
+# Initialize hook
+hook_output = knit_hooks$get("output")
+
+# Hook to wrap output text when it exceeds 'n' using linewidth
+knit_hooks$set(output = function(x, options) {
+  
+  if (!is.null(n <- options$linewidth)) {
+    x = knitr:::split_lines(x)
+    
+    # wrap lines wider than 'n'
+    if (any(nchar(x) > n))
+      x <- strwrap(x, width = n)
+      x <- paste(x, collapse = "\n")
+  }
+  hook_output(x, options)
+})
+
+# Times a chunk and prints the time it took to run it under the chunk
+# To time a chunk, include in the chunk options: {r my_chunk, timeit=TRUE}
+knitr::knit_hooks$set(timeit = local({
+  now = NULL
+  function(before, options) {
+    if (before) {
+      now <<- Sys.time()
+    } else {
+      res = difftime(Sys.time(), now)
+      now <<- NULL
+      # use options$label if you want the chunk label as well
+      paste('Time for this code chunk:', as.character(res))
+    }
+  }})
+)
+
+
+######### kableExtra
+
+options(
+  knitr.kable.NA = '',  # replace NAs in tables with blank
+  digits = 3  # round digits (doesn't work without this here!)
+)
+
+# Function to simplify table styling
+sable <- function(tab, escape = T, full_width = F, drop = F, font_size = 12) {
+  if (drop) {
+    tab %>%
+      kable(escape = escape, booktabs = T) %>%
+      collapse_rows(valign = "top") %>% 
+      kable_styling(
+        "striped", 
+        position = "center", 
+        full_width = full_width, 
+        font_size = font_size
+      )
+  } else {
+    tab %>%
+      kable(escape = escape, booktabs = T) %>%
+      kable_styling(
+        "striped", 
+        position = "center", 
+        full_width = full_width,
+        font_size = font_size
+      )
+  }
+}
+
+
+#########  ggplot2
+
+# Set up preferred theme in ggplot2
+my_theme <- 
+  # this and theme_minimal() are my favorite
+  theme_light() +  
+  theme(
+    axis.ticks = element_blank(),
+    axis.title = element_text(face = "bold"),
+    axis.title.x = element_text(margin = margin(t = 15)),
+    axis.title.y  = element_text(margin = margin(r = 7)),
+    legend.key = element_rect(colour = NA, fill = NA),  # Avoid borders
+    panel.border = element_blank(), 
+    text = element_text(color = "grey20"),
+    title = element_text(face = "bold")
+  )
+
+# Make the above theme the default theme
+original_theme <- theme_set(my_theme)
+```
 
 # Setup
 
@@ -20,7 +149,7 @@ library(readr)
 library(tidyr)
 ```
 
-## Parameters
+## Configurations
 
 Locations.
 
@@ -219,7 +348,7 @@ Write all tables.
 # Style current file
 styler::style_file(
   path = rstudioapi::getSourceEditorContext()$path,
-  style = tidyverse_style
+  style = styler::tidyverse_style
 )
 
 # Lint current file
@@ -231,7 +360,9 @@ lintr::lint(rstudioapi::getSourceEditorContext()$path)
 
 ```{r}
 # Clean up project of libraries not in use
-renv::clean()
+# (use prompt = FALSE to avoid the interactive session)
+# (packages can only be removed in interactive mode b/c this is destructive)
+renv::clean(prompt = TRUE)
 
 # Update lock file with new packages
 renv::snapshot()
