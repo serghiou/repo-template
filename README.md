@@ -51,9 +51,6 @@ Combining resources across OSF and GitHub should yield the following structure.
 │
 ├── docs                <- Data dictionaries, manuals, and all other explanatory materials.
 │
-├── requirements.txt    <- The requirements file for reproducing the analysis environment, e.g.
-│                          generated with `pip freeze > requirements.txt`
-│
 ├── publication                      
 │   └── journal                      <- Journal that this was submitted to
 │       └── submission-1_YYYY-MM-DD  <- All materials of submission 1
@@ -61,7 +58,14 @@ Combining resources across OSF and GitHub should yield the following structure.
 │           ├── figures              <- All figures for submission
 │           └── tables               <- All tables for submission
 │
-└── packrat             <- Package dependency management with packrat
+├── .github
+│   ├── linters         <- Configuration files for all linters being used
+│   └── workflows       <- GitHub Actions workflows
+│
+├── Dockerfile          <- Use docker build to build Docker container based on this file
+├── deps.R              <- Import packages not used elsewhere to help renv
+├── renv.lock           <- Lockfile with all dependencies managed by renv
+└── renv                <- Package dependency management directory with renv
 ```
 
 
