@@ -216,14 +216,14 @@ Write all tables.
 ## Linting and styling
 
 ```{r}
-# Lint current file
-lintr::lint(rstudioapi::getSourceEditorContext()$path)
-
 # Style current file
 styler::style_file(
   path = rstudioapi::getSourceEditorContext()$path,
   style = tidyverse_style
 )
+
+# Lint current file
+lintr::lint(rstudioapi::getSourceEditorContext()$path)
 ```
 
 
