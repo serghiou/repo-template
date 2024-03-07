@@ -28,7 +28,6 @@ library(knitr)
 library(rmdformats)
 library(kableExtra)
 library(ggplot2)
-library(magrittr)
 
 
 ######### knitr
@@ -55,7 +54,7 @@ hook_output <- knit_hooks$get("output")
 
 # Hook to wrap output text when it exceeds 'n' using linewidth
 knit_hooks$set(output = function(x, options) {
-  if (!is.null(n <- options$linewidth)) {
+  if (!is.null(n = options$linewidth)) {
     x <- knitr:::split_lines(x)
 
     # wrap lines wider than 'n'
@@ -96,8 +95,8 @@ sable <- function(tab, escape = TRUE, full_width = FALSE, drop = FALSE,
                   font_size = 12) {
   if (drop) {
     tab %>%
-      kable(escape = escape, booktabs = TRUE) %>%
-      kableExtra::collapse_rows(valign = "top") %>%
+      kable(escape = escape, booktabs = TRUE) |>
+      kableExtra::collapse_rows(valign = "top") |>
       kableExtra::kable_styling(
         "striped",
         position = "center",
@@ -105,8 +104,8 @@ sable <- function(tab, escape = TRUE, full_width = FALSE, drop = FALSE,
         font_size = font_size
       )
   } else {
-    tab %>%
-      kable(escape = escape, booktabs = TRUE) %>%
+    tab |>
+      kable(escape = escape, booktabs = TRUE) |>
       kableExtra::kable_styling(
         "striped",
         position = "center",
