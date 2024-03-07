@@ -35,34 +35,34 @@ library(magrittr)
 
 # Define chunk options
 opts_chunk$set(
-  echo = T,
-  cache = F,  # if TRUE, no need to rerun chunks
+  echo = TRUE,
+  cache = FALSE, # if TRUE, no need to rerun chunks
   # cache.lazy = TRUE,  # use with big objects (>1 GB)
-  cache.comments = F,  # do not rebuild if comments change
-  tidy = F,  # can play with this
-  warning = F,
-  message = F,
+  cache.comments = FALSE, # do not rebuild if comments change
+  tidy = FALSE, # can play with this
+  warning = FALSE,
+  message = FALSE,
   comment = NA,
   fig.align = "center",
   fig.width = 7,
-  fig.path = "Figs/",  # export all figures to dir Figs
+  fig.path = "Figs/", # export all figures to dir Figs
   linewidth = 91,
   width = 75
 )
 
 # Initialize hook
-hook_output = knit_hooks$get("output")
+hook_output <- knit_hooks$get("output")
 
 # Hook to wrap output text when it exceeds 'n' using linewidth
 knit_hooks$set(output = function(x, options) {
-  
   if (!is.null(n <- options$linewidth)) {
-    x = knitr:::split_lines(x)
-    
+    x <- knitr:::split_lines(x)
+
     # wrap lines wider than 'n'
-    if (any(nchar(x) > n))
+    if (any(nchar(x) > n)) {
       x <- strwrap(x, width = n)
-      x <- paste(x, collapse = "\n")
+    }
+    x <- paste(x, collapse = "\n")
   }
   hook_output(x, options)
 })
@@ -70,45 +70,46 @@ knit_hooks$set(output = function(x, options) {
 # Times a chunk and prints the time it took to run it under the chunk
 # To time a chunk, include in the chunk options: {r my_chunk, timeit=TRUE}
 knitr::knit_hooks$set(timeit = local({
-  now = NULL
+  now <- NULL
   function(before, options) {
     if (before) {
       now <<- Sys.time()
     } else {
-      res = difftime(Sys.time(), now)
+      res <- difftime(Sys.time(), now)
       now <<- NULL
       # use options$label if you want the chunk label as well
-      paste('Time for this code chunk:', as.character(res))
+      paste("Time for this code chunk:", as.character(res))
     }
-  }})
-)
+  }
+}))
 
 
 ######### kableExtra
 
 options(
-  knitr.kable.NA = '',  # replace NAs in tables with blank
-  digits = 3  # round digits (doesn't work without this here!)
+  knitr.kable.NA = "", # replace NAs in tables with blank
+  digits = 3 # round digits (doesn't work without this here!)
 )
 
 # Function to simplify table styling
-sable <- function(tab, escape = T, full_width = F, drop = F, font_size = 12) {
+sable <- function(tab, escape = TRUE, full_width = FALSE, drop = FALSE,
+                  font_size = 12) {
   if (drop) {
     tab %>%
-      kable(escape = escape, booktabs = T) %>%
-      collapse_rows(valign = "top") %>% 
+      kable(escape = escape, booktabs = TRUE) %>%
+      collapse_rows(valign = "top") %>%
       kable_styling(
-        "striped", 
-        position = "center", 
-        full_width = full_width, 
+        "striped",
+        position = "center",
+        full_width = full_width,
         font_size = font_size
       )
   } else {
     tab %>%
-      kable(escape = escape, booktabs = T) %>%
+      kable(escape = escape, booktabs = TRUE) %>%
       kable_styling(
-        "striped", 
-        position = "center", 
+        "striped",
+        position = "center",
         full_width = full_width,
         font_size = font_size
       )
@@ -119,16 +120,16 @@ sable <- function(tab, escape = T, full_width = F, drop = F, font_size = 12) {
 #########  ggplot2
 
 # Set up preferred theme in ggplot2
-my_theme <- 
+my_theme <-
   # this and theme_minimal() are my favorite
-  theme_light() +  
+  theme_light() +
   theme(
     axis.ticks = element_blank(),
     axis.title = element_text(face = "bold"),
     axis.title.x = element_text(margin = margin(t = 15)),
-    axis.title.y  = element_text(margin = margin(r = 7)),
-    legend.key = element_rect(colour = NA, fill = NA),  # Avoid borders
-    panel.border = element_blank(), 
+    axis.title.y = element_text(margin = margin(r = 7)),
+    legend.key = element_rect(colour = NA, fill = NA), # Avoid borders
+    panel.border = element_blank(),
     text = element_text(color = "grey20"),
     title = element_text(face = "bold")
   )
@@ -166,7 +167,7 @@ Configurations.
 
 ```{r}
 # Should the dockerfile be updated automatically?
-UPDATE_DOCKERFILE <- FALSE  # nolint⁠
+UPDATE_DOCKERFILE <- FALSE # nolint⁠
 ```
 
 
@@ -334,7 +335,6 @@ ggsave(
 Write all tables.
 
 ```{r}
-
 ```
 
 
