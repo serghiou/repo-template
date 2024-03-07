@@ -94,7 +94,7 @@ options(
 sable <- function(tab, escape = TRUE, full_width = FALSE, drop = FALSE,
                   font_size = 12) {
   if (drop) {
-    tab %>%
+    tab |>
       kable(escape = escape, booktabs = TRUE) |>
       kableExtra::collapse_rows(valign = "top") |>
       kableExtra::kable_styling(
