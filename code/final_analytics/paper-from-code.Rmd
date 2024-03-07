@@ -97,8 +97,8 @@ sable <- function(tab, escape = TRUE, full_width = FALSE, drop = FALSE,
   if (drop) {
     tab %>%
       kable(escape = escape, booktabs = TRUE) %>%
-      collapse_rows(valign = "top") %>%
-      kable_styling(
+      kableExtra::collapse_rows(valign = "top") %>%
+      kableExtra::kable_styling(
         "striped",
         position = "center",
         full_width = full_width,
@@ -107,7 +107,7 @@ sable <- function(tab, escape = TRUE, full_width = FALSE, drop = FALSE,
   } else {
     tab %>%
       kable(escape = escape, booktabs = TRUE) %>%
-      kable_styling(
+      kableExtra::kable_styling(
         "striped",
         position = "center",
         full_width = full_width,
