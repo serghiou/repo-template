@@ -355,7 +355,7 @@ lintr::lint(rstudioapi::getSourceEditorContext()$path)
 ```
 
 
-## Dependencies
+## Dependency management
 
 ```{r}
 # Clean up project of libraries not in use
