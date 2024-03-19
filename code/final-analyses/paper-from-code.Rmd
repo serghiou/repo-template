@@ -170,6 +170,15 @@ UPDATE_DOCKERFILE <- FALSE # nolint⁠
 ```
 
 
+## Outputs
+
+```{r}
+figures <- list()
+tables <- list()
+```
+
+
+
 ------------------------------------------------------------------------
 
 # Read
@@ -229,7 +238,7 @@ sprintf("Mean intensity difference in Channel 1 vs. 2 = %.1f units", mean_diff)
 
 ```{r}
 # Plot
-membrane_histogram <-
+figures$membrane_histogram <-
   membrane %>%
   mutate(channel = paste("Channel", channel)) %>%
   ggplot(aes(x = mean_intensity, fill = channel, color = channel)) +
@@ -244,7 +253,7 @@ membrane_histogram <-
   )
 
 # Print
-membrane_histogram
+figures$membrane_histogram
 ```
 
 ### Panel b
@@ -322,7 +331,7 @@ Write all figures.
 # Save
 ggsave(
   file.path(dst_dirname, "paper-from-code_fig_1a.pdf"),
-  membrane_histogram,
+  figures$membrane_histogram,
   height = 4,
   width = 6
 )
@@ -377,9 +386,9 @@ if (UPDATE_DOCKERFILE) {
   my_dockerfile <- containerit::dockerfile(from = sessionInfo(), env = ls())
   # Write file
   write(my_dockerfile, file = "~/Dockerfile")
+  # Print
+  print(my_dockerfile)
 }
-
-print(my_dockerfile)
 ```
 
 
