@@ -101,7 +101,7 @@ All code follows the following structure.
 │   ├── Dependency management
 │   └── Containerization
 │
-├── Documentation
+└── Documentation
     ├── Session info
     └── References
 ```
